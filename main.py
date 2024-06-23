@@ -13,9 +13,10 @@ states = states_data.state.to_list()
 guessed_states = []
 
 while len(guessed_states) < 50:
-    answer = screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="What's another state's name?").title()
+    answer = screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="What's another state's name?")
+    titlecase_answer = answer.title() if answer else None
 
-    if answer == "Exit" or answer == None:
+    if answer == "Exit" or answer is None:
         states_to_learn = [state for state in states if state not in guessed_states]
         new_data = pandas.DataFrame(states_to_learn)
         new_data.to_csv("states_to_learn.csv")
